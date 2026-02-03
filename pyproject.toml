@@ -1,0 +1,167 @@
+[project]
+authors = [
+  { name = "Nathaniel Starkman", email = "nstarman@users.noreply.github.com" },
+]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dependencies = ["equinox>=0.11.0", "jax>=0.4.20"]
+description = "Efficiently get the index-0 element of an iterable."
+dynamic = ["version"]
+license.file = "LICENSE"
+name = "jax-bounded-while"
+readme = "README.md"
+requires-python = ">=3.9"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/GalacticDynamics/jax-bounded-while/issues"
+Changelog     = "https://github.com/GalacticDynamics/jax-bounded-while/releases"
+Discussions   = "https://github.com/GalacticDynamics/jax-bounded-while/discussions"
+Homepage      = "https://github.com/GalacticDynamics/jax-bounded-while"
+
+
+[build-system]
+build-backend = "hatchling.build"
+requires      = ["hatch-vcs", "hatchling"]
+
+
+[dependency-groups]
+build = ["build>=1.3.0"]
+dev = [
+  "ipykernel>=6.29.5",
+  "cz-conventional-gitmoji>=0.6.1",
+  { include-group = "build" },
+  { include-group = "docs" },
+  { include-group = "lint" },
+  { include-group = "nox" },
+  { include-group = "test" },
+]
+docs = [
+  "furo>=2023.08.17",
+  "myst_parser>=0.13",
+  "sphinx>=7.0",
+  "sphinx-autodoc-typehints>=2.3.0",
+  "sphinx-copybutton>=0.5.2",
+]
+lint = ["mypy>=1.19.0", "pre-commit>=4.1.0", "pylint>=3.3.8"]
+nox = ["nox>=2024.10.9", "nox-uv>=0.6.3"]
+test = [
+  "beartype>=0.19.0",
+  "jaxtyping>=0.2.34",
+  "optional_dependencies>=0.3",
+  "pytest>=8.4.2",
+  "pytest-cov>=6.2.1",
+  "pytest-github-actions-annotate-failures>=0.3.0",
+  "sybil[pytest]>=9.2.0",
+]
+
+
+[tool.hatch]
+build.hooks.vcs.version-file = "src/jax_bounded_while/_version.py"
+build.hooks.vcs.version-file-template = """\
+version: str = {version!r}
+version_tuple: tuple[int, int, int] | tuple[int, int, int, str, str]
+version_tuple = {version_tuple!r}
+"""
+version.source = "vcs"
+
+
+[tool.codespell]
+skip = ["uv.lock"]
+
+
+[tool.commitizen]
+name = "cz_gitmoji"
+
+
+[tool.pytest.ini_options]
+addopts = [
+  "--jaxtyping-packages=jax_bounded_while,beartype.beartype(conf=beartype.BeartypeConf(strategy=beartype.BeartypeStrategy.On))",
+  "--showlocals",
+  "--strict-config",
+  "--strict-markers",
+  "-p no:doctest",    # using sybil
+  "-ra",
+]
+filterwarnings = ["error"]
+log_cli_level = "INFO"
+minversion = "8.3"
+testpaths = ["src/", "tests/", "README", "docs"]
+xfail_strict = true
+
+
+[tool.coverage]
+report.exclude_also = ['\.\.\.', 'if typing.TYPE_CHECKING:']
+run.source          = ["jax_bounded_while"]
+
+[tool.mypy]
+disallow_incomplete_defs = false
+disallow_untyped_defs    = false
+enable_error_code        = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+files                    = ["src"]
+python_version           = "3.10"
+strict                   = true
+warn_unreachable         = true
+warn_unused_configs      = true
+
+[[tool.mypy.overrides]]
+disallow_incomplete_defs = true
+disallow_untyped_defs    = true
+module                   = "jax_bounded_while.*"
+
+
+[tool.ruff]
+src = ["src"]
+
+[tool.ruff.lint]
+extend-select = ["ALL"]
+ignore = [
+  "D203",    # 1 blank line required before class docstring
+  "D213",    # Multi-line docstring summary should start at the second line
+  "FIX002",  # Line contains TODO, consider resolving the issue
+  "ISC001",  # Conflicts with formatter
+  "COM812",  # Conflicts with formatter
+  "PLR09",   # Too many <...>
+  "PLR2004", # Magic value used in comparison
+  "TD002",   # Missing author in TODO
+  "TD003",   # Missing issue link on the line following this TODO
+]
+
+[tool.ruff.lint.per-file-ignores]
+"noxfile.py" = ["T20"]
+"tests/**"   = ["ANN", "INP001", "S101", "T20"]
+
+[tool.ruff.lint.isort]
+combine-as-imports     = true
+extra-standard-library = ["typing_extensions"]
+known-first-party      = ["optional_dependencies"]
+known-local-folder     = ["jax_bounded_while"]
+
+
+[tool.pylint]
+ignore-paths = [".*/_version.py"]
+messages_control.disable = [
+  "design",
+  "fixme",
+  "line-too-long",
+  "missing-function-docstring",
+  "missing-module-docstring",
+  "wrong-import-position",
+]
+py-version = "3.9"
+reports.output-format = "colorized"
+similarities.ignore-imports = "yes"
