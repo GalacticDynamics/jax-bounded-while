@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783905277425,
+  "lastUpdate": 1788796351921,
   "repoUrl": "https://github.com/GalacticDynamics/jaxmore",
   "entries": {
     "jaxmore Benchmarks": [
@@ -655,6 +655,142 @@ window.BENCHMARK_DATA = {
             "unit": "iter/sec",
             "range": "stddev: 0.000029285439721572344",
             "extra": "mean: 533.1365252132789 usec\nrounds: 1289"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "nstarman@users.noreply.github.com",
+            "name": "Nathaniel Starkman",
+            "username": "nstarman"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "524d2455ff761ded9e18f88cd252d4bbf4b17f6c",
+          "message": "💚 ci: bump hynek/build-and-inspect-python-package to v3.0.1 (#25)\n\nv2.x pins Twine 6, which rejects packaging metadata 2.5 emitted by\ncurrent build backends, failing the distribution build. v3 ships Twine 7.\n\nCo-authored-by: Claude Fable 5.1 <noreply@anthropic.com>",
+          "timestamp": "2026-09-07T11:49:32-04:00",
+          "tree_id": "013bf76937e440da65199134199dc5410e656337",
+          "url": "https://github.com/GalacticDynamics/jaxmore/commit/524d2455ff761ded9e18f88cd252d4bbf4b17f6c"
+        },
+        "date": 1788796351377,
+        "tool": "pytest",
+        "benches": [
+          {
+            "name": "tests/benchmark/test_bounded_while_loop.py::test_bench_scalar_loop",
+            "value": 26.350737846034498,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0014403797740439215",
+            "extra": "mean: 37.949601481481444 msec\nrounds: 27"
+          },
+          {
+            "name": "tests/benchmark/test_bounded_while_loop.py::test_bench_scalar_loop_jit",
+            "value": 112250.57250432401,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000019062137435266648",
+            "extra": "mean: 8.908640532425606 usec\nrounds: 25318"
+          },
+          {
+            "name": "tests/benchmark/test_nn.py::test_bench_optimizer_in_closure",
+            "value": 852.9927520336533,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0001620670693331883",
+            "extra": "mean: 1.172342903988177 msec\nrounds: 677"
+          },
+          {
+            "name": "tests/benchmark/test_nn.py::test_bench_optimizer_in_carry",
+            "value": 815.7263336037862,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002159063176895321",
+            "extra": "mean: 1.225901333333342 msec\nrounds: 666"
+          },
+          {
+            "name": "tests/benchmark/test_nn.py::test_bench_optimizer_via_step_kw",
+            "value": 831.1988025847501,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0002046475429437952",
+            "extra": "mean: 1.2030816176471077 msec\nrounds: 748"
+          },
+          {
+            "name": "tests/benchmark/test_nn.py::test_bench_empty_batch_skipping",
+            "value": 1356.5417002455458,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00011355129884063858",
+            "extra": "mean: 737.1686397985342 usec\nrounds: 1191"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_fast_path_single_positional",
+            "value": 125467.18164648332,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000011457873934493868",
+            "extra": "mean: 7.9702117069753164 usec\nrounds: 56035"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_fast_path_two_positionals",
+            "value": 122725.15376245773,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000011145188656887104",
+            "extra": "mean: 8.148288833563518 usec\nrounds: 63476"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_fast_path_with_kwonly",
+            "value": 119999.30985244484,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000013329232805362595",
+            "extra": "mean: 8.333381260522525 usec\nrounds: 64132"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_outs_only",
+            "value": 246326.0339117544,
+            "unit": "iter/sec",
+            "range": "stddev: 8.647345759560006e-7",
+            "extra": "mean: 4.059660215851351 usec\nrounds: 107945"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_bind_free_pos_only",
+            "value": 127816.0012062667,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000001006131488251766",
+            "extra": "mean: 7.823746561952143 usec\nrounds: 66971"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_varargs_bind_free",
+            "value": 122626.45638481168,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000011286800115484275",
+            "extra": "mean: 8.15484708179057 usec\nrounds: 63001"
+          },
+          {
+            "name": "tests/benchmark/test_structured.py::test_bench_pos_only_default_omitted",
+            "value": 87773.95583509062,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0000017899015445628637",
+            "extra": "mean: 11.392901122957205 usec\nrounds: 49334"
+          },
+          {
+            "name": "tests/benchmark/test_vmap.py::test_bench_static_path",
+            "value": 2604.6307790636256,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000042282957619620265",
+            "extra": "mean: 383.9315760368553 usec\nrounds: 1302"
+          },
+          {
+            "name": "tests/benchmark/test_vmap.py::test_bench_kw_path",
+            "value": 2088.3851814156455,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00003285903641731136",
+            "extra": "mean: 478.8388698114272 usec\nrounds: 1060"
+          },
+          {
+            "name": "tests/benchmark/test_vmap.py::test_bench_general_path",
+            "value": 2327.269182248694,
+            "unit": "iter/sec",
+            "range": "stddev: 0.00009260663585056288",
+            "extra": "mean: 429.6881545235617 usec\nrounds: 1249"
           }
         ]
       }
